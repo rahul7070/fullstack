@@ -10,13 +10,14 @@ const cors = require('cors')
 
 const app = express();
 
+app.use(express.json());
+
 app.get("/", (req, res)=>{
-    res.send("hello worls")
+    res.status(200).send({"msg":"hello worls"})
 })
 
 app.use(cors())
 
-app.use(express.json());
 app.use("/users", userRouter)
 app.use(auth)
 app.use("/notes", notesRouter)
