@@ -1,4 +1,6 @@
 const express = require("express");
+require("dotenv").config()
+
 const {connection} = require("./db");
 const { auth } = require("./middlewares/auth.middleware");
 const { notesRouter } = require("./route/notes.routes");
@@ -20,11 +22,11 @@ app.use(auth)
 app.use("/notes", notesRouter)
 
 
-app.listen(9900,async ()=>{
+app.listen(process.env.port,async ()=>{
     try {
         connection
         console.log("connection established")
-        console.log("connected to 9900")
+        console.log(`connected to ${process.env.port}`)
     } catch (error) {
         console.log("error in connection")
     }
